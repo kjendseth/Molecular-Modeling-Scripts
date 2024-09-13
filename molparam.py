@@ -24,7 +24,7 @@ multi = args.multi
 #antechamber_path = "/path/to/antechamber/"
 
 # Run the antechamber and parmchk2 commands
-subprocess.run(["antechamber", "-i", "orca.out", "-fi", "orcout", "-o", name + ".mol2", "-fo", "mol2", "-at", "gaff2", "-pf", "y", "-nc", charge, "-c", "abcg2", "-m", multi])
+subprocess.run(["antechamber", "-i", "orca.out", "-fi", "orcout", "-o", name + ".mol2", "-fo", "mol2", "-at", "gaff2", "-pf", "y", "-rn", name, "-nc", charge, "-c", "abcg2", "-m", multi])
 subprocess.run(["parmchk2", "-i", name + ".mol2", "-f", "mol2", "-o", name + ".frcmod"])
 
 # Define the content with the 'MOL' string dynamically replaced
