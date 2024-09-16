@@ -2,8 +2,9 @@ from pymol import cmd
 
 def format_atom_ids(atom_ids):
     # Sort the atom IDs first to ensure proper sequencing
-    atom_ids.sort()
+    #atom_ids.sort()
     
+    #print(atom_ids)
     formatted_ids = []
     start = atom_ids[0]
     end = atom_ids[0]
@@ -35,10 +36,17 @@ def get_atom_ids():
     # Get the atom information for the current selection "sele"
     atom_ids = []
     
-    # Iterate through the selected atoms and store their IDs (with 1 subtracted)
-    model = cmd.get_model("sele")
+    # Iterate through the selected atoms and store their IDs
+    model = cmd.get_model("as")
     for atom in model.atom:
-        atom_ids.append(atom.index - 1)
+        #print(atom.id)
+        atom_ids.append(atom.id)  # Collect atom IDs without modifying them
+    
+    # Sort the atom IDs before subtracting 1
+    atom_ids.sort()
+    
+    # Subtract 1 from each atom ID
+    atom_ids = [id - 1 for id in atom_ids]
     
     # Format the atom IDs
     formatted_atom_ids = format_atom_ids(atom_ids)
